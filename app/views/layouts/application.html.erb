@@ -34,15 +34,17 @@
                     </div>
                   </div>
                 </div>
-                <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
-                <% if action_name == 'index' %>
-                  <%= link_to "New #{controller_name.singularize}", url_for(action: :new, controller: controller_name), 
-                              class: "inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500" %>
-                <% elsif action_name == 'show' %>
-                  <%= link_to "Back", url_for(action: :index, controller: controller_name), 
-                              class: "inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500" %>
+                <% if current_user && current_user.admin %>
+                  <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
+                    <% if action_name == 'index' %>
+                      <%= link_to "New #{controller_name.singularize}", url_for(action: :new, controller: controller_name), 
+                                  class: "inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500" %>
+                    <% elsif action_name == 'show' %>
+                      <%= link_to "Back", url_for(action: :index, controller: controller_name), 
+                                  class: "inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500" %>
+                    <% end %>
+                  </div>
                 <% end %>
-                </div>
               </div>
             </div>
           </div>
@@ -50,9 +52,9 @@
 
           <div class="mt-8">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <%= render 'layouts/notice' %>
+              <%= render 'layouts/notice' %>
 
-            <%= yield %>
+              <%= yield %>
           </div>
         </div>
       </div>
