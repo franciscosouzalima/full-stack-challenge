@@ -11,7 +11,15 @@
               <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 User
               </th>
-              <th class="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+              <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Load Date
+              </th>
+              <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Return Date
+              </th>
+              <th class="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Actions
+              </th>
               <% if current_user && current_user.admin %>
                 <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
                 <th class="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
@@ -21,16 +29,31 @@
           <tbody class="bg-white divide-y divide-gray-200">
             <% @lends.each do |lend| %>
             <tr class="bg-white">
-              <td class="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <td class="max-w-0 px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                 <div class="flex">
                   <%= link_to lend, class: "group inline-flex space-x-2 truncate text-sm" do %>
                     <p class="text-gray-500 truncate group-hover:text-gray-900">
-                      <%=  lend.book.name %>
+                      
+                        <%=  lend.book.name %>
+                      
                     </p>
                   <% end %>
                 </div>
               </td>
-              <td class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
+              <td class="px-6 py-4 text-left whitespace-nowrap text-sm text-gray-500">
+              <% if lend.user_id %>
+                <%=  lend.user.email %>
+              <% end %>
+              </td>
+              <td class="px-6 py-4 text-left whitespace-nowrap text-sm text-gray-500">
+              
+                <%=  lend.loan_date %>
+              
+              </td>
+              <td class="px-6 py-4 text-left whitespace-nowrap text-sm text-gray-500">
+              
+                <%=  lend.return_date %>
+              
               </td>
               <td class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
                  <%= link_to 'View', lend %>
